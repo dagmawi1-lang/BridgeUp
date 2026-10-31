@@ -1,0 +1,14 @@
+{
+  "name": "bridgeup-community-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\"",
+    "build": "npm run build -w client",
+    "test": "npm test -w server",
+    "start": "npm start -w server"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}

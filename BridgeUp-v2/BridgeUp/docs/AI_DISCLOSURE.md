@@ -1,0 +1,3 @@
+# AI-use disclosure draft
+
+AI assistance was used during development to brainstorm features, propose the initial architecture, generate and revise portions of the React interface and CSS, draft the Express API and automated tests, and prepare project documentation. The developer reviewed and should personally test and understand the submitted implementation. BridgeUp's V1 matching feature is a deterministic rule-based algorithm written in JavaScript; it is not a trained AI model and does not call an external AI service. No AI-generated output is represented as verified community data. All included users, requests, events, and counts are fictional demonstration content.
