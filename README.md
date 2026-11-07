@@ -1,122 +1,49 @@
-# BridgeUp 🌉
-### Building stronger communities through connection and support
+# BridgeUp V7
 
-BridgeUp is a community-support platform designed to help people connect, share skills, find assistance, and participate in their communities. It provides a central place where people can ask for help, offer their abilities, discover community events, and build meaningful connections.
+BridgeUp is a community-support platform built for the CSC Winter Sparkathon. It connects people who need help with people who can offer a skill, explains every suggested match, and keeps people safe with consent-based messaging, blocking, reporting, and moderation.
 
-## 💡 The Problem
+## What's in V7
+- **Real accounts:** scrypt-hashed passwords, HttpOnly SameSite=Strict session cookies, sign-in rate limiting, and same-origin checks on every write.
+- **Roles enforced on the server:** member, helper, moderator, and admin. Only an author or a moderator can edit or remove a post. Only moderators can see the report queue and audit log.
+- **SQLite database** using Node's built-in `node:sqlite`. No native add-ons are needed. It has foreign keys, transactions, and unique constraints (one report per person per item, one match per request/offer pair).
+- **Explainable matching:** same category +40 (related +20), each shared skill +20 (max 40), urgent +10, same availability +10. Every suggestion lists its reasons.
+- **Match workflow:** propose → accept or decline → complete. Accepting marks the request as matched, and completing closes it.
+- **Private messaging:** you can only message someone after an accepted match or connection. Only the two participants can read a conversation. There are rate limits and a 2-link cap to slow spam.
+- **Live updates:** notifications and messages arrive instantly via Server-Sent Events. No polling and no extra packages.
+- **Safety:** block anyone (hides them and stops messages), report posts, messages, or people. Moderators can dismiss, remove content, or suspend the author (which revokes sessions). Every action goes to an audit log, and the reporter is notified.
+- **Circles and events** with real membership and RSVPs. **Analytics** from live data, including which requests still have no helper.
+- Accessible UI: skip link, `aria-current` navigation, labeled inputs, visible focus rings, dark mode, and a responsive top navigation on phones.
 
-People often struggle to find the support and resources available in their own communities. Opportunities to volunteer, receive assistance, learn new skills, or meet others can be scattered across different platforms.
-
-BridgeUp addresses this problem by bringing community support and participation into one accessible platform.
-
-## 🚀 Features
-
-- **Support Requests:** Create and browse requests from people who need assistance.
-- **Skill Sharing:** Offer skills and knowledge to help others.
-- **Community Circles:** Discover groups and connect with people who share interests.
-- **Community Events:** Find opportunities to participate in local activities.
-- **Smart Matching:** A matching system helps connect people based on their needs, skills, and interests.
-- **Search and Filtering:** Find relevant requests, skills, and community opportunities.
-- **Persistent Data:** Save community information through the backend.
-- **Offline Fallback:** Continue using supported features when the backend is unavailable.
-
-## 🛠️ Technologies Used
-
-- React
-- Vite
-- JavaScript
-- CSS
-- Node.js
-- Express
-- JSON-based data storage
-
-## 📦 Installation
-
-### 1. Clone the repository
-
-```bash
-git clone YOUR_REPOSITORY_URL
-cd BridgeUp
-```
-
-### 2. Install dependencies
-
-Install the frontend dependencies:
-
+## Run (Node.js 22.13 or newer)
 ```bash
 npm install
+npm --prefix client install
+npm run dev            # API on :5000 and the app on http://localhost:5173
 ```
+Production-style run on one port: `npm start`, then open http://localhost:5000.
 
-If the backend has its own package directory, navigate there and install its dependencies as well.
+**Demo accounts** (fictional) all use the password `bridgeup-demo-2026`: `jordan` (student), `alex` (tutor), `maya` (helper), `sam_mod` (moderator). The sign-in screen has one-click buttons for each.
 
-### 3. Start the application
+To reset the demo data, delete `server/data/bridgeup.db*`.
 
-Start the frontend development server:
-
+## Tests
 ```bash
-npm run dev
+npm test     # 9 API and unit test groups: auth, authorization, matching, messaging rules, blocking, moderation, suspension, rate limits
 ```
 
-Start the backend using the server command configured in its package.json file.
+## AI disclosure
+AI tools assisted with brainstorming, code generation, debugging, and documentation. The team reviewed, ran, and tested the implementation.
 
-Open the local URL displayed by Vite in your browser.
+## Known limits
+- One server process. Live updates are held in memory, so a multi-server deployment would need a shared pub/sub service.
+- Messages are protected by access control and HTTPS in transit, but they are not end-to-end encrypted.
+- No email verification or password reset yet.
+- `node:sqlite` is marked experimental by Node. The `start` scripts silence that warning.
 
-## 🧠 How Smart Matching Works
+## License
 
-BridgeUp uses a matching system to help connect community members.
+[MIT](LICENSE) © 2026 Dagmawi Melaku
 
-The system considers information such as:
+## Earlier versions
 
-- Skills offered
-- Assistance requested
-- Shared interests
-- Relevant categories
-
-The goal is to make it easier for people to find useful connections rather than requiring them to search through every available listing manually.
-
-## 🌍 Community Impact
-
-BridgeUp is designed around a simple idea: communities become stronger when people can easily support one another.
-
-By connecting people who need help with people who can provide it, the platform encourages:
-
-- Volunteerism
-- Skill sharing
-- Mentorship
-- Community participation
-- Social connection
-- Access to support
-
-## 🤖 AI Disclosure
-
-AI tools were used as development assistance during the creation of this project. They helped with brainstorming, implementation guidance, debugging, and documentation.
-
-The project creator remains responsible for understanding, reviewing, testing, and explaining the final implementation.
-
-## 🔮 Future Development
-
-Potential improvements include:
-
-- User registration and authentication
-- Volunteer and mentor profiles
-- Direct community messaging
-- Reporting and moderation tools
-- More advanced matching recommendations
-- Community impact analytics
-- Improved accessibility and mobile support
-
-## 🏆 Hackathon
-
-**Event:** CSC Winter Sparkathon
-
-**Theme:** Technology that brings people together, supports others, and strengthens communities.
-
-**Project:** BridgeUp
-
-## 👨‍💻 Creator
-
-Developed as a student hackathon project focused on using technology to improve community connections and make support easier to access.
-
----
-
-**BridgeUp: Connecting people. Sharing skills. Strengthening communities.**
+Previous uploads of this project are kept unchanged in [`archive/`](archive/).
