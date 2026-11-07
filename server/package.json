@@ -10,5 +10,5 @@
     "start": "node --disable-warning=ExperimentalWarning src/server.js",
     "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
   },
-  "license": "MIT"
+  "license": "SEE LICENSE IN LICENSE"
 }
