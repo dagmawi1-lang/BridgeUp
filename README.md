@@ -2,6 +2,16 @@
 
 BridgeUp is a community-support platform built for the CSC Winter Sparkathon. It connects people who need help with people who can offer a skill, explains every suggested match, and keeps people safe with consent-based messaging, blocking, reporting, and moderation.
 
+![Matches page: each suggestion shows its score and the reasons behind it](docs/screenshot.jpg)
+
+## My role & contributions
+
+**Solo developer · AI-assisted**
+
+- Designed the safety model: messaging opens only after both people agree, plus blocking, reporting, and moderation
+- Defined the matching weights and made every match show its reasons
+- Tested with three users signed in at once (student, tutor, moderator)
+
 ## What's in V7
 - **Real accounts:** scrypt-hashed passwords, HttpOnly SameSite=Strict session cookies, sign-in rate limiting, and same-origin checks on every write.
 - **Roles enforced on the server:** member, helper, moderator, and admin. Only an author or a moderator can edit or remove a post. Only moderators can see the report queue and audit log.
