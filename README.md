@@ -41,9 +41,6 @@ To reset the demo data, delete `server/data/bridgeup.db*`.
 npm test     # 9 API and unit test groups: auth, authorization, matching, messaging rules, blocking, moderation, suspension, rate limits
 ```
 
-## AI disclosure
-AI tools assisted with brainstorming, code generation, debugging, and documentation. The team reviewed, ran, and tested the implementation.
-
 ## Known limits
 - One server process. Live updates are held in memory, so a multi-server deployment would need a shared pub/sub service.
 - Messages are protected by access control and HTTPS in transit, but they are not end-to-end encrypted.
